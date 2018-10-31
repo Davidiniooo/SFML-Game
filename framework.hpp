@@ -11,8 +11,10 @@ public:
   CFramework();
   void init(int width,int height);
   void render();
+  void checkEvents();
   sf::RenderWindow *getWindow(){return window;}
 private:
   sf::RenderWindow *window;
+  sf::Event event;
 };
 #endif
