@@ -17,6 +17,7 @@ public:
   void init(const std::string texture,float xPos, float yPos);
   void render();
   void move(int leftright, int updown);
+  sf::Vector2f getPos();
 private:
   float m_fxPos;
   float m_fyPos;

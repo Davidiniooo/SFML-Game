@@ -13,7 +13,7 @@ void CFramework::init(int width,int height){
 }
 
 void CFramework::render(){
-
+  window->setView(view);
   window->display();
 }
 
@@ -31,6 +31,6 @@ void CFramework::update(){
   window->clear();
 }
 
-void CFramework::updateView(float xMid, float yMid){
-
+void CFramework::updateView(sf::Vector2f pos){
+  view.setCenter(pos);
 }

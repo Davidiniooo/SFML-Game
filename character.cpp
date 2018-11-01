@@ -70,3 +70,8 @@ void CCharackter::render(){
   m_playerSprite.setPos(m_fxPos,m_fyPos);
   m_playerSprite.render();
 }
+
+sf::Vector2f CCharackter::getPos(){
+  sf::Vector2f tempPos(m_fxPos,m_fyPos);
+  return tempPos;
+}

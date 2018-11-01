@@ -26,4 +26,9 @@ void CPlayer::checkKeyboard(){
     directiony = NO;
 
   m_playerCharacter->move(directionx,directiony);
+  moveCamera();
+}
+
+void CPlayer::moveCamera(){
+  g_pFramework->updateView(m_playerCharacter->getPos());
 }

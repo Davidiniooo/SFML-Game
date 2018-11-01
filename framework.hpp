@@ -12,7 +12,7 @@ public:
   void init(int width,int height);
   void render();
   void update();
-  void updateView(float xMid, float yMid);
+  void updateView(sf::Vector2f pos);
   void close();
   sf::RenderWindow *getWindow(){return window;}
   sf::Event getEvent(){return event;}
