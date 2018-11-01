@@ -1,4 +1,5 @@
 #include "character.hpp"
+#include "timer.hpp"
 #include <iostream>
 CCharackter::CCharackter(float acceleration){
   m_fAcceeration=acceleration;
@@ -15,46 +16,46 @@ void CCharackter::init(const std::string texture,float xPos, float yPos){
 void CCharackter::move(int leftright,int updown){
   if(leftright == LEFT)
   {
-    m_fxVelocity-=m_fAcceeration;
+    m_fxVelocity-=m_fAcceeration* g_pTimer->getElapsed();
   }
   else if(leftright == RIGHT)
   {
-        m_fxVelocity+=m_fAcceeration;
+        m_fxVelocity+=m_fAcceeration* g_pTimer->getElapsed();
   }
   else if(leftright == NO)
   {
     if(m_fxVelocity>0)
       {
-        m_fxVelocity-=m_fAcceeration;
+        m_fxVelocity-=m_fAcceeration* g_pTimer->getElapsed();
         if(m_fxVelocity<0)
           m_fxVelocity=0;
       }
     else if(m_fxVelocity<0)
       {
-        m_fxVelocity+=m_fAcceeration;
+        m_fxVelocity+=m_fAcceeration* g_pTimer->getElapsed();
         if(m_fxVelocity>0)
           m_fxVelocity=0;
       }
   }
   if(updown == UP)
   {
-    m_fyVelocity-=m_fAcceeration;
+    m_fyVelocity-=m_fAcceeration* g_pTimer->getElapsed();
   }
   else if(updown == DOWN)
   {
-    m_fyVelocity+=m_fAcceeration;
+    m_fyVelocity+=m_fAcceeration* g_pTimer->getElapsed();
   }
   else if(updown == NO)
   {
     if(m_fyVelocity>0)
       {
-        m_fyVelocity-=m_fAcceeration;
+        m_fyVelocity-=m_fAcceeration* g_pTimer->getElapsed();
         if(m_fyVelocity<0)
           m_fyVelocity=0;
       }
     else if(m_fyVelocity<0)
       {
-        m_fyVelocity+=m_fAcceeration;
+        m_fyVelocity+=m_fAcceeration* g_pTimer->getElapsed();
         if(m_fyVelocity>0)
           m_fyVelocity=0;
       }

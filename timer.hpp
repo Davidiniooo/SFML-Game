@@ -15,5 +15,6 @@ public:
 private:
   sf::Clock clock;
   sf::Time elapsed;
+  float timeasfloat;
 };
 #endif

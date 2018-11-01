@@ -9,14 +9,16 @@ void CGame::run(){
 
   CPlayer Player(&Solider);
 
+  float secondsGone = 0;
+
   while(g_pFramework->getWindow()->isOpen()==true)
     {
 
       g_pFramework->update();
+      secondsGone += g_pTimer->getElapsed();
+      std::cout << secondsGone << '\n';
       handleEvents();
-
       Player.checkKeyboard();
-
       Solider.render();
       g_pFramework->render();
     }

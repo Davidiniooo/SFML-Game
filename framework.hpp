@@ -12,6 +12,7 @@ public:
   void init(int width,int height);
   void render();
   void update();
+  void updateView(float xMid, float yMid);
   void close();
   sf::RenderWindow *getWindow(){return window;}
   sf::Event getEvent(){return event;}
@@ -19,5 +20,6 @@ private:
   sf::RenderWindow *window;
   sf::Event event;
   void checkEvents();
+  sf::View view;
 };
 #endif

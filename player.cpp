@@ -7,6 +7,7 @@ CPlayer::CPlayer(CCharackter *character){
 void CPlayer::checkKeyboard(){
   int directionx;
   int directiony;
+
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)&&sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     directionx = NO;
   else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -24,6 +25,5 @@ void CPlayer::checkKeyboard(){
   else
     directiony = NO;
 
-  std::cout << directionx << '\n';
   m_playerCharacter->move(directionx,directiony);
 }

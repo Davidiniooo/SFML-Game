@@ -9,6 +9,7 @@ class CPlayer{
 public:
   CPlayer(CCharackter* character);
   void checkKeyboard();
+  void moveCamera();
 private:
   CCharackter* m_playerCharacter;
 };
