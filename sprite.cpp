@@ -1,15 +1,19 @@
 #include "sprite.hpp"
 
 CSprite::CSprite(){
-  window = g_pFramework->getWindow();
+  window = CFramework::Get()->getWindow();
 }
 
 void CSprite::init(std::string inputImage){
-  sf::Texture texture;
+
   texture.loadFromFile(inputImage);
   sprite.setTexture(texture);
 }
 
 void CSprite::render(){
   window->draw(sprite);
+}
+
+void CSprite::setPos(float xPos,float yPos){
+  sprite.setPosition(sf::Vector2f(xPos,yPos));
 }

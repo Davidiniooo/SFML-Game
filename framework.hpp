@@ -11,10 +11,13 @@ public:
   CFramework();
   void init(int width,int height);
   void render();
-  void checkEvents();
+  void update();
+  void close();
   sf::RenderWindow *getWindow(){return window;}
+  sf::Event getEvent(){return event;}
 private:
   sf::RenderWindow *window;
   sf::Event event;
+  void checkEvents();
 };
 #endif

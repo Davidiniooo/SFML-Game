@@ -6,13 +6,23 @@ CFramework::CFramework(){
 
 void CFramework::init(int width,int height){
   window = new sf::RenderWindow(sf::VideoMode(width,height),"window");
+  window->setVerticalSyncEnabled(true);
 }
 
 void CFramework::render(){
-  window->clear();
+
   window->display();
 }
 
-void checkEvents(){
-  window.pollEvent(event);
+void CFramework::checkEvents(){
+  window->pollEvent(event);
+}
+
+void CFramework::close(){
+  window->close();
+}
+
+void CFramework::update(){
+  checkEvents();
+  window->clear();
 }
