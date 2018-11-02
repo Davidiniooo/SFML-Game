@@ -7,10 +7,10 @@
 class CPlayer{
 
 public:
-  CPlayer(CCharackter* character);
+  CPlayer(CCharacter* character);
   void checkKeyboard();
   void moveCamera();
 private:
-  CCharackter* m_playerCharacter;
+  CCharacter* m_playerCharacter;
 };
 #endif

@@ -10,10 +10,10 @@
 #define RIGHT 1
 #define NO 0
 
-class CCharackter{
+class CCharacter{
 public:
 
-  CCharackter(float acceleration);
+  CCharacter(float acceleration);
   void init(const std::string texture,float xPos, float yPos);
   void render();
   void move(int leftright, int updown);

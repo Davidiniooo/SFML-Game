@@ -1,7 +1,7 @@
 #include "sprite.hpp"
 
 CSprite::CSprite(){
-  window = CFramework::Get()->getWindow();
+  window = g_pFramework->getWindow();
 }
 
 void CSprite::init(std::string inputImage){

@@ -4,13 +4,16 @@
 
 void CGame::run(){
 
-  CCharackter Solider(0.1f);
-  Solider.init("test.png",100,10);
+  CCharacter TestCharacter(0.1f);
+  TestCharacter.init("test.png",100,10);
 
-  CCharackter Solider2(0.1f);
-  Solider2.init("test2.png",100,10);
+  CCharacter TestCharacter2(0.1f);
+  TestCharacter2.init("test2.png",100,10);
 
-  CPlayer Player(&Solider);
+  CCharacter TestCharacter3(0.1f);
+  TestCharacter3.init("test2.png",100,10);
+
+  CPlayer Player(&TestCharacter);
 
   float secondsGone = 0;
   float framesGone = 0;
@@ -22,16 +25,18 @@ void CGame::run(){
       secondsGone += g_pTimer->getElapsed();
       framesGone++;
       handleEvents();
+
       Player.checkKeyboard();
 
-      //Solider2.move(RIGHT,UP);
+      TestCharacter2.move(RIGHT,NO);
+      TestCharacter3.move(RIGHT,UP);
 
-      Solider.render();
-      Solider2.render();
+      TestCharacter.render();
+      TestCharacter2.render();
+      TestCharacter3.render();
 
       g_pFramework->render();
 
-      std::cout << framesGone / secondsGone << '\n';
       if(framesGone>300)
       {
         secondsGone = 0;

@@ -1,6 +1,6 @@
 #include"player.hpp"
 #include <iostream>
-CPlayer::CPlayer(CCharackter *character){
+CPlayer::CPlayer(CCharacter *character){
   m_playerCharacter = character;
 }
 

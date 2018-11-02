@@ -7,7 +7,6 @@ CFramework::CFramework(){
 void CFramework::init(int width,int height){
   window = new sf::RenderWindow(sf::VideoMode(width,height),"window");
   window->setVerticalSyncEnabled(true);
-  window->setFramerateLimit(60);
   view = window->getDefaultView();
   window->setView(view);
 }
