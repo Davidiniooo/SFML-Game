@@ -13,7 +13,7 @@
 class CCharacter{
 public:
 
-  CCharacter(float acceleration);
+  CCharacter(float acceleration, float maxVelocity);
   void init(const std::string texture,float xPos, float yPos);
   void render();
   void move(int leftright, int updown);
@@ -23,6 +23,8 @@ private:
   float m_fyPos;
 
   float m_fAcceeration;
+  float m_fMaxVelocity;
+
   float m_fxVelocity;
   float m_fyVelocity;
 

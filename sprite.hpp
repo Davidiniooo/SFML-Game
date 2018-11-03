@@ -10,6 +10,7 @@ class CSprite
 public:
   CSprite();
   void init(const std::string inputImage);
+  void init(const std::string inputImage,float width,float height);
   void render();
   void setPos(float xPos, float yPos);
 private:

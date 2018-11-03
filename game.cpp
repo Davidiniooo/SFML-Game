@@ -1,17 +1,24 @@
 #include"game.hpp"
 #include<iostream>
 
+void CGame::init(){
+
+}
 
 void CGame::run(){
 
-  CCharacter TestCharacter(0.1f);
-  TestCharacter.init("test.png",100,10);
+  CCharacter TestCharacter(100.0f,100.0f);
+  TestCharacter.init("Images/test.png",100,10);
 
-  CCharacter TestCharacter2(0.1f);
-  TestCharacter2.init("test2.png",100,10);
+  CCharacter TestCharacter2(10.0f,10.0f);
+  TestCharacter2.init("Images/test2.png",100,10);
 
-  CCharacter TestCharacter3(0.1f);
-  TestCharacter3.init("test2.png",100,10);
+  CCharacter TestCharacter3(25.0f,50.0f);
+  TestCharacter3.init("Images/test2.png",100,10);
+
+  CBlock TestBlock1;
+  TestBlock1.init("Images/test3.png",100,100,100,100);
+
 
   CPlayer Player(&TestCharacter);
 
@@ -34,6 +41,7 @@ void CGame::run(){
       TestCharacter.render();
       TestCharacter2.render();
       TestCharacter3.render();
+      TestBlock1.render();
 
       g_pFramework->render();
 
@@ -49,14 +57,14 @@ void CGame::run(){
 CGame::CGame(){}
 
 void CGame::handleEvents(){
+  if(g_pFramework->getEvent().type!=sf::Event::Closed)
 
   switch (g_pFramework->getEvent().type)
   {
     case (sf::Event::Closed):
     {
       g_pFramework->close();
-    }
-      break;
+    }break;
 
   }
 }

@@ -1,8 +1,9 @@
 #include "character.hpp"
 #include "timer.hpp"
 #include <iostream>
-CCharacter::CCharacter(float acceleration){
-  m_fAcceeration=acceleration;
+CCharacter::CCharacter(float acceleration, float maxVelocity){
+  m_fAcceeration = acceleration;
+  m_fMaxVelocity = maxVelocity;
 }
 
 void CCharacter::init(const std::string texture,float xPos, float yPos){
@@ -63,6 +64,21 @@ void CCharacter::move(int leftright,int updown){
           m_fyVelocity=0;
       }
   }
+  if(m_fxVelocity>m_fMaxVelocity)
+    m_fxVelocity = m_fMaxVelocity;
+
+  if(m_fxVelocity<-m_fMaxVelocity)
+    m_fxVelocity = -m_fMaxVelocity;
+
+
+  if(m_fyVelocity>m_fMaxVelocity)
+      m_fyVelocity = m_fMaxVelocity;
+
+  if(m_fyVelocity<-m_fMaxVelocity)
+    m_fyVelocity = -m_fMaxVelocity;
+
+
+
   m_fxPos += m_fxVelocity;
   m_fyPos += m_fyVelocity;
 }

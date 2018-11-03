@@ -10,6 +10,13 @@ void CSprite::init(std::string inputImage){
   sprite.setTexture(texture);
 }
 
+void CSprite::init(const std::string inputImage,float width,float height){
+  texture.loadFromFile(inputImage);
+  sprite.setTexture(texture);
+  sprite.setTextureRect(sf::IntRect(0, 0, width, height));
+
+}
+
 void CSprite::render(){
   window->draw(sprite);
 }
