@@ -1,8 +1,5 @@
 #include"player.hpp"
 #include <iostream>
-CPlayer::CPlayer(CCharacter *character){
-  m_playerCharacter = character;
-}
 
 void CPlayer::checkKeyboard(){
   int directionx;
@@ -25,10 +22,10 @@ void CPlayer::checkKeyboard(){
   else
     directiony = NO;
 
-  m_playerCharacter->move(directionx,directiony);
+  move(directionx,directiony);
   moveCamera();
 }
 
 void CPlayer::moveCamera(){
-  g_pFramework->updateView(m_playerCharacter->getPos());
+  g_pFramework->updateView(this->getPos());
 }

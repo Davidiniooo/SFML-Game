@@ -2,62 +2,57 @@
 #include<iostream>
 
 void CGame::init(){
+  CCharacter TestCharacter;
+  TestCharacter.init("Images/test.png",0,0,10,10);
+
+  CCharacter TestCharacter2;
+  TestCharacter2.init("Images/test2.png",0,0,100,100);
+
+  CCharacter TestCharacter3;
+  TestCharacter3.init("Images/test2.png",0,0,100,100);
+
+  characterList.push_back(TestCharacter);
+  characterList.push_back(TestCharacter2);
+  characterList.push_back(TestCharacter3);
 
 }
 
 void CGame::run(){
 
-  CCharacter TestCharacter(100.0f,100.0f);
-  TestCharacter.init("Images/test.png",100,10);
 
-  CCharacter TestCharacter2(10.0f,10.0f);
-  TestCharacter2.init("Images/test2.png",100,10);
-
-  CCharacter TestCharacter3(25.0f,50.0f);
-  TestCharacter3.init("Images/test2.png",100,10);
-
-  CBlock TestBlock1;
-  TestBlock1.init("Images/test3.png",100,100,100,100);
-
-
-  CPlayer Player(&TestCharacter);
-
-  float secondsGone = 0;
-  float framesGone = 0;
+  std::list<CCharacter>::iterator iteratorCCharacter;
+  Player= new CPlayer;
+  createBackground();
 
   while(g_pFramework->getWindow()->isOpen()==true)
     {
 
       g_pFramework->update();
-      secondsGone += g_pTimer->getElapsed();
-      framesGone++;
       handleEvents();
 
-      Player.checkKeyboard();
+      Player->checkKeyboard();
 
-      TestCharacter2.move(RIGHT,NO);
-      TestCharacter3.move(RIGHT,UP);
+      for (iteratorCCharacter = characterList.begin();iteratorCCharacter!=iteratorCCharacter;iteratorCCharacter++)
+      {
+        iteratorCCharacter->render();
+      }
 
-      TestCharacter.render();
-      TestCharacter2.render();
-      TestCharacter3.render();
-      TestBlock1.render();
-
+      for(int x = 0;x<29;x++){
+      {
+        for(int y = 0;y<29;y++)
+        {
+          background[x][y].render();
+        }
+      }
       g_pFramework->render();
 
-      if(framesGone>300)
-      {
-        secondsGone = 0;
-        framesGone = 0;
-      }
     }
+}
+CGame::CGame(){
 
 }
 
-CGame::CGame(){}
-
 void CGame::handleEvents(){
-  if(g_pFramework->getEvent().type!=sf::Event::Closed)
 
   switch (g_pFramework->getEvent().type)
   {
@@ -66,5 +61,23 @@ void CGame::handleEvents(){
       g_pFramework->close();
     }break;
 
+  }
+}
+
+void CGame::createBackground(){
+
+  for(int x = 0;x<29;x++)
+  {
+    for(int y = 0;y<29;y++)
+    {
+        switch (map[x][y])
+        {
+          case 1:
+          background[x][y] = CBlock();
+          background[x][y].init("Images/test3.png",x*100,y*100,100,100);
+          break;
+
+        }
+    }
   }
 }

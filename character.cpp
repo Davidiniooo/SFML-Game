@@ -1,13 +1,14 @@
 #include "character.hpp"
 #include "timer.hpp"
 #include <iostream>
-CCharacter::CCharacter(float acceleration, float maxVelocity){
-  m_fAcceeration = acceleration;
-  m_fMaxVelocity = maxVelocity;
+CCharacter::CCharacter(){
+
 }
 
-void CCharacter::init(const std::string texture,float xPos, float yPos){
+void CCharacter::init(const std::string texture,float xPos, float yPos,float acceleration, float maxVelocity){
 
+  m_fAcceeration = acceleration;
+  m_fMaxVelocity = maxVelocity;
   m_playerSprite.init(texture);
 
   m_fxPos = xPos;

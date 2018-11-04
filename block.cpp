@@ -9,6 +9,7 @@ CBlock::CBlock(){
 
 void CBlock::init(std::string inputImage,float xPos,float yPos,float width,float height){
   m_blockSprite.init(inputImage,width,height);
+  m_blockSprite.setPos(xPos,yPos);
 
 }
 

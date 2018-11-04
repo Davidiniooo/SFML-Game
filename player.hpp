@@ -4,13 +4,12 @@
 #ifndef PLAYER_HPP
 #define PLAYER_HPP
 
-class CPlayer{
+class CPlayer : public CCharacter{
 
 public:
-  CPlayer(CCharacter* character);
+
   void checkKeyboard();
   void moveCamera();
 private:
-  CCharacter* m_playerCharacter;
 };
 #endif

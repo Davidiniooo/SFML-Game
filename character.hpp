@@ -13,12 +13,12 @@
 class CCharacter{
 public:
 
-  CCharacter(float acceleration, float maxVelocity);
-  void init(const std::string texture,float xPos, float yPos);
+  CCharacter();
+  void init(const std::string texture,float xPos, float yPos,float acceleration, float maxVelocity);
   void render();
   void move(int leftright, int updown);
   sf::Vector2f getPos();
-private:
+protected:
   float m_fxPos;
   float m_fyPos;
 
