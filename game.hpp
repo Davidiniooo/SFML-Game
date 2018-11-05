@@ -52,7 +52,7 @@ private:
               };
 
   CBlock background[29][29];
-  std::list<CCharacter> characterList;
+  std::list<CCharacter*> characterList;
   CPlayer* Player;
 
 };

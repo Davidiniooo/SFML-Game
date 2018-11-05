@@ -1,10 +1,14 @@
 #include"player.hpp"
 #include <iostream>
 
+CPlayer::CPlayer(CCharacter* player){
+  m_pCharacter = player;
+}
+
 void CPlayer::checkKeyboard(){
+
   int directionx;
   int directiony;
-
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)&&sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     directionx = NO;
   else if(sf::Keyboard::isKeyPressed(sf::Keyboard::A))
@@ -22,10 +26,10 @@ void CPlayer::checkKeyboard(){
   else
     directiony = NO;
 
-  move(directionx,directiony);
+  m_pCharacter->move(directionx,directiony);
   moveCamera();
 }
 
 void CPlayer::moveCamera(){
-  g_pFramework->updateView(this->getPos());
+  g_pFramework->updateView(m_pCharacter->getPos());
 }
