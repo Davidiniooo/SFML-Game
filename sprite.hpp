@@ -1,4 +1,5 @@
 #include<string>
+#include <iostream>
 #include<SFML/Graphics.hpp>
 #include "framework.hpp"
 
@@ -11,11 +12,15 @@ public:
   CSprite();
   void init(const std::string inputImage);
   void init(const std::string inputImage,float width,float height);
+  void initAnimation(const std::string inputImage,int animationPhases);
+
   void render();
+  void renderAnimation(int animationPhase);
   void setPos(float xPos, float yPos);
 private:
   sf::Sprite sprite;
   sf::Texture texture;
   sf::RenderWindow * window;
+  int animationPhases;
 };
 #endif

@@ -3,13 +3,13 @@
 
 void CGame::init(){
   CCharacter* TestCharacter = new CCharacter;
-  TestCharacter->init("Images/test.png",0,0,10,10);
+  TestCharacter->init("Images/solider.png",0,0,10,10);
 
   CCharacter* TestCharacter2 = new CCharacter;
-  TestCharacter2->init("Images/test2.png",0,0,100,100);
+  TestCharacter2->init("Images/solider.png",0,0,100,100);
 
   CCharacter* TestCharacter3 = new CCharacter;
-  TestCharacter3->init("Images/test2.png",0,0,100,100);
+  TestCharacter3->init("Images/solider.png",0,0,100,100);
 
   characterList.push_back(TestCharacter);
   characterList.push_back(TestCharacter2);
@@ -39,7 +39,7 @@ void CGame::run(){
           background[x][y].render();
         }
       }
-      
+
       for (iteratorCCharacter = characterList.begin();iteratorCCharacter!=characterList.end();iteratorCCharacter++)
       {
         (*iteratorCCharacter)->render();

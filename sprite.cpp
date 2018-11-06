@@ -2,6 +2,7 @@
 
 CSprite::CSprite(){
   window = g_pFramework->getWindow();
+  sprite.setPosition(sf::Vector2f(0,0));
 }
 
 void CSprite::init(std::string inputImage){
@@ -17,7 +18,20 @@ void CSprite::init(const std::string inputImage,float width,float height){
 
 }
 
+void CSprite::initAnimation(const std::string inputImage,int numOfAnimPhases){
+    animationPhases = numOfAnimPhases;
+    texture.loadFromFile(inputImage);
+    sprite.setTexture(texture);
+    sprite.setTextureRect(sf::IntRect(0, 0, texture.getSize().x/animationPhases, texture.getSize().y));
+    sprite.setScale(100,100);
+  }
+
 void CSprite::render(){
+  window->draw(sprite);
+}
+
+void CSprite::renderAnimation(int animationPhase){
+  sprite.setTextureRect(sf::IntRect((texture.getSize().y/animationPhases)*animationPhase,0, texture.getSize().x/animationPhases, texture.getSize().y/animationPhases));
   window->draw(sprite);
 }
 

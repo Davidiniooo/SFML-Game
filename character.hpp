@@ -1,5 +1,6 @@
 #include"framework.hpp"
 #include"sprite.hpp"
+#include <math.h>
 
 #ifndef CHARACTER_HPP
 #define CHARACTER_HPP
@@ -9,6 +10,14 @@
 #define LEFT -1
 #define RIGHT 1
 #define NO 0
+
+#define ANIMPHASE_STANDING_RIGHT 0
+#define ANIMPHASE_WALKING_RIGHT_1 1
+#define ANIMPHASE_WALKING_RIGHT_2 2
+
+#define ANIMPHASE_STANDING_LEFT 3
+#define ANIMPHASE_WALKING_LEFT_1 4
+#define ANIMPHASE_WALKING_LEFT_2 5
 
 class CCharacter{
 public:
@@ -28,6 +37,10 @@ protected:
   float m_fxVelocity;
   float m_fyVelocity;
 
+  float m_fcurrentAnimPhase;
+
+  int m_lastXDir;
+  int m_lastYDir;
   CSprite m_playerSprite;
 };
 #endif
