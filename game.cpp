@@ -31,6 +31,7 @@ void CGame::run(){
       g_pFramework->update();
       handleEvents();
       Player->checkKeyboard();
+      Player->checkMouse();
 
       for(int x = 0;x<29;x++)
       {

@@ -25,9 +25,11 @@ public:
   CCharacter();
   void init(const std::string texture,float xPos, float yPos,float acceleration, float maxVelocity);
   void render();
-  void move(int leftright, int updown);
   sf::Vector2f getPos();
+  void setViewDirection(float degrees);
+  void move(int leftright, int updown);
 protected:
+
   float m_fxPos;
   float m_fyPos;
 
@@ -37,10 +39,12 @@ protected:
   float m_fxVelocity;
   float m_fyVelocity;
 
+  float m_fviewDirection;
+
   float m_fcurrentAnimPhase;
 
   int m_lastXDir;
   int m_lastYDir;
-  CSprite m_playerSprite;
+  CSprite m_pcharacterSprite;
 };
 #endif

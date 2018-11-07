@@ -23,7 +23,7 @@ void CSprite::initAnimation(const std::string inputImage,int numOfAnimPhases){
     texture.loadFromFile(inputImage);
     sprite.setTexture(texture);
     sprite.setTextureRect(sf::IntRect(0, 0, texture.getSize().x/animationPhases, texture.getSize().y));
-    sprite.setScale(100,100);
+    sprite.setScale(5,5);
   }
 
 void CSprite::render(){
@@ -31,7 +31,7 @@ void CSprite::render(){
 }
 
 void CSprite::renderAnimation(int animationPhase){
-  sprite.setTextureRect(sf::IntRect((texture.getSize().y/animationPhases)*animationPhase,0, texture.getSize().x/animationPhases, texture.getSize().y/animationPhases));
+  sprite.setTextureRect(sf::IntRect((texture.getSize().x/animationPhases)*animationPhase,0, texture.getSize().x/animationPhases, texture.getSize().y));
   window->draw(sprite);
 }
 

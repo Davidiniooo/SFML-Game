@@ -11,14 +11,14 @@ void CCharacter::init(const std::string texture,float xPos, float yPos,float acc
 
   m_fAcceeration = acceleration;
   m_fMaxVelocity = maxVelocity;
-  m_playerSprite.initAnimation(texture,6);
+  m_pcharacterSprite.initAnimation(texture,6);
 
   m_fxPos = xPos;
   m_fyPos = yPos;
   m_fxVelocity = 0;
   m_fyVelocity = 0;
   m_fcurrentAnimPhase = ANIMPHASE_STANDING_RIGHT;
-  m_playerSprite.setPos(m_fxPos,m_fyPos);
+  m_pcharacterSprite.setPos(m_fxPos,m_fyPos);
 }
 
 void CCharacter::move(int leftright,int updown){
@@ -83,14 +83,21 @@ void CCharacter::move(int leftright,int updown){
 
 
   if(m_fyVelocity>0)
+  {
     m_lastYDir = DOWN;
-  if(m_fyVelocity<0)
+  }
+  else if(m_fyVelocity<0)
+  {
     m_lastYDir = UP;
-  if(m_fyVelocity>0)
+  }
+  if(m_fxVelocity>0)
+  {
     m_lastXDir = RIGHT;
-  if(m_fyVelocity<0)
+  }
+  else if(m_fxVelocity<0)
+  {
     m_lastXDir = LEFT;
-
+  }
 
   m_fxPos += m_fxVelocity;
   m_fyPos += m_fyVelocity;
@@ -98,22 +105,11 @@ void CCharacter::move(int leftright,int updown){
 
 void CCharacter::render(){
 
-  if(m_fxVelocity == 0 &&m_fyVelocity == 0)
+  if(m_fviewDirection>=0&&m_fviewDirection<90)
   {
-    switch (m_lastXDir) {
-      case RIGHT:
-        m_fcurrentAnimPhase = ANIMPHASE_STANDING_RIGHT;
-      case LEFT:
-        m_fcurrentAnimPhase = ANIMPHASE_STANDING_LEFT ;
-    }
-
+    m_pcharacterSprite.renderAnimation(0);
   }
-
-
-  m_playerSprite.renderAnimation(static_cast<int>(round(m_fcurrentAnimPhase)));
-  m_playerSprite.setPos(m_fxPos,m_fyPos);
-  m_playerSprite.render();
-
+  m_pcharacterSprite.setPos(m_fxPos,m_fyPos);
 }
 
 sf::Vector2f CCharacter::getPos(){
