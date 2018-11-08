@@ -32,10 +32,6 @@ void CPlayer::checkKeyboard(){
 
 void CPlayer::checkMouse(){
   sf::Vector2i mousePosition = sf::Mouse::getPosition(*(g_pFramework->getWindow()));
-  std::cout << mousePosition.x<<"   ";
-  std::cout << mousePosition.y << '\n';
-
-  m_pCharacter->setViewDirection();
 }
 
 void CPlayer::moveCamera(){

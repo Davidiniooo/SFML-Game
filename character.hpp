@@ -42,9 +42,6 @@ protected:
   float m_fviewDirection;
 
   float m_fcurrentAnimPhase;
-
-  int m_lastXDir;
-  int m_lastYDir;
   CSprite m_pcharacterSprite;
 };
 #endif
