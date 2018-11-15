@@ -19,6 +19,15 @@
 #define ANIMPHASE_WALKING_LEFT_1 4
 #define ANIMPHASE_WALKING_LEFT_2 5
 
+#define ANIMPHASE_STANDING_DOWN 6
+#define ANIMPHASE_WALKING_DOWN_1 7
+#define ANIMPHASE_WALKING_DOWN_2 8
+
+#define ANIMPHASE_STANDING_UP 9
+#define ANIMPHASE_WALKING_UP_1 10
+#define ANIMPHASE_WALKING_UP_2 11
+
+
 class CCharacter{
 public:
 
@@ -43,5 +52,7 @@ protected:
 
   float m_fcurrentAnimPhase;
   CSprite m_pcharacterSprite;
+
+
 };
 #endif
