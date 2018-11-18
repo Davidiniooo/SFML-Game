@@ -33,53 +33,56 @@ void CPlayer::checkKeyboard(){
 
 void CPlayer::checkMouse(){
   sf::Vector2i mousePosition = sf::Mouse::getPosition(*(g_pFramework->getWindow()));
-  sf::Vector2i windowMiddle;
   float viewAngle;
-  windowMiddle.x = round(g_pFramework->getWindow()->getPosition().x+(g_pFramework->getWindow()->getSize().x/2));
-  windowMiddle.y = round(g_pFramework->getWindow()->getPosition().y+(g_pFramework->getWindow()->getSize().y/2));
+  float mousePositionX = mousePosition.x;
+  float mousePositionY = mousePosition.y;
+  float windowMiddleX = round(g_pFramework->getWindow()->getSize().x/2);
+  float windowMiddleY = round(g_pFramework->getWindow()->getSize().y/2);
 
-  if(mousePosition.x == windowMiddle.x)
+  if(mousePositionX == windowMiddleX)
   {
-    if(mousePosition.y >= windowMiddle.y)
-    {
-      m_pCharacter->setViewDirection(0);
-    }
-    else if(mousePosition.y < windowMiddle.y)
+    if(mousePositionY >= windowMiddleY)
     {
       m_pCharacter->setViewDirection(180);
     }
+    else if(mousePositionY < windowMiddleY)
+    {
+      m_pCharacter->setViewDirection(0);
+    }
   }
-  else if(mousePosition.y == windowMiddle.y)
+  else if(mousePositionY == windowMiddleY)
   {
-    if(mousePosition.x<windowMiddle.x)
+    if(mousePositionX<windowMiddleX)
     {
       m_pCharacter->setViewDirection(270);
     }
-    else if(mousePosition.x>windowMiddle.x)
+    else if(mousePositionX>windowMiddleX)
     {
       m_pCharacter->setViewDirection(90);
     }
   }
   else
   {
-    viewAngle = atan(abs(mousePosition.y-windowMiddle.y)/abs(mousePosition.x-windowMiddle.x))*(360/(2*PI));
-  
-    if(mousePosition.x>=windowMiddle.x&&mousePosition.y>=windowMiddle.y)
+    viewAngle = atan((abs(mousePositionY-windowMiddleY)/abs(mousePositionX-windowMiddleX)))*(360/(2*PI));
+    if(mousePositionX>=windowMiddleX&&mousePositionY<=windowMiddleY)
+    {
+      viewAngle = 90 - viewAngle;
+    }
+    else if(mousePositionX>=windowMiddleX&&mousePositionY>windowMiddleY)
     {
       viewAngle += 90;
     }
-    else if(mousePosition.x<windowMiddle.x&&mousePosition.y>windowMiddle.y)
+    else if(mousePositionX<windowMiddleX&&mousePositionY>windowMiddleY)
     {
-      viewAngle += 180;
+      viewAngle =90-viewAngle+180;
     }
-    else if(mousePosition.x<=windowMiddle.x&&mousePosition.y<=windowMiddle.y)
+    else if(mousePositionX<=windowMiddleX&&mousePositionY<=windowMiddleY)
     {
       viewAngle += 270;
     }
 
     m_pCharacter->setViewDirection(viewAngle);
   }
-
 }
 
 void CPlayer::moveCamera(){

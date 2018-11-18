@@ -99,25 +99,25 @@ void CCharacter::render(){
         m_fcurrentAnimPhase= ANIMPHASE_WALKING_RIGHT_1;
       }
     }
-    if(m_fviewDirection>=135&&m_fviewDirection <225)
+    else if(m_fviewDirection>=135&&m_fviewDirection <225)
     {
-      if(m_fcurrentAnimPhase>ANIMPHASE_WALKING_RIGHT_2||m_fcurrentAnimPhase<ANIMPHASE_WALKING_RIGHT_1)
+      if(m_fcurrentAnimPhase>ANIMPHASE_WALKING_DOWN_2||m_fcurrentAnimPhase<ANIMPHASE_WALKING_DOWN_1)
       {
-        m_fcurrentAnimPhase= ANIMPHASE_WALKING_RIGHT_1;
+        m_fcurrentAnimPhase= ANIMPHASE_WALKING_DOWN_1;
       }
     }
-    if(m_fviewDirection>=225&&m_fviewDirection <315)
-    {
-      if(m_fcurrentAnimPhase>ANIMPHASE_WALKING_LEFT_2||m_fcurrentAnimPhase<ANIMPHASE_WALKING_LEFT_1)
-      {
-        m_fcurrentAnimPhase= ANIMPHASE_WALKING_RIGHT_1;
-      }
-    }
-    if(m_fviewDirection>=315&&m_fviewDirection <45)
+    else if(m_fviewDirection>=225&&m_fviewDirection <315)
     {
       if(m_fcurrentAnimPhase>ANIMPHASE_WALKING_LEFT_2||m_fcurrentAnimPhase<ANIMPHASE_WALKING_LEFT_1)
       {
         m_fcurrentAnimPhase= ANIMPHASE_WALKING_LEFT_1;
+      }
+    }
+    else
+    {
+      if(m_fcurrentAnimPhase>ANIMPHASE_WALKING_UP_2||m_fcurrentAnimPhase<ANIMPHASE_WALKING_UP_1)
+      {
+        m_fcurrentAnimPhase= ANIMPHASE_WALKING_UP_1;
       }
     }
 
@@ -128,15 +128,15 @@ void CCharacter::render(){
     {
       m_fcurrentAnimPhase =  ANIMPHASE_STANDING_RIGHT;
     }
-    if(m_fviewDirection>=135&&m_fviewDirection <255)
+    else if(m_fviewDirection>=135&&m_fviewDirection <225)
     {
       m_fcurrentAnimPhase =  ANIMPHASE_STANDING_DOWN;
     }
-    if(m_fviewDirection>=255&&m_fviewDirection <315)
+    else if(m_fviewDirection>=225&&m_fviewDirection <315)
     {
       m_fcurrentAnimPhase =  ANIMPHASE_STANDING_LEFT;
     }
-    if(m_fviewDirection>=315&&m_fviewDirection <45)
+    else
     {
       m_fcurrentAnimPhase =  ANIMPHASE_STANDING_UP;
     }
@@ -144,6 +144,7 @@ void CCharacter::render(){
 
   m_pcharacterSprite.setPos(m_fxPos,m_fyPos);
   m_pcharacterSprite.renderAnimation(round(m_fcurrentAnimPhase));
+  std::cout << m_fcurrentAnimPhase << '\n';
 
 }
 
