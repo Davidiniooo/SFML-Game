@@ -144,7 +144,10 @@ void CCharacter::render(){
 
   m_pcharacterSprite.setPos(m_fxPos,m_fyPos);
   m_pcharacterSprite.renderAnimation(round(m_fcurrentAnimPhase));
-  std::cout << m_fcurrentAnimPhase << '\n';
+
+}
+
+void CCharacter::processCollision(CSprite collidingSprite){
 
 }
 

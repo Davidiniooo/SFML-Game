@@ -5,6 +5,7 @@ class CBlock{
 public:
   CBlock();
   void init(std::string inputImage,float xPos,float yPos,float width,float height);
+  CSprite getCSprite(){return m_blockSprite;};
   void render();
 
 protected:

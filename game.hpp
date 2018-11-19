@@ -1,7 +1,7 @@
 #include"framework.hpp"
 #include"character.hpp"
 #include"player.hpp"
-#include"block.hpp"
+#include"obstacle.hpp"
 #include<list>
 
 
@@ -13,14 +13,15 @@ public:
   CGame();
   void init();
   void run();
-  void handleEvents();
-  void createBackground();
-
 
 private:
+  void handleEvents();
+  void createBackground();
+  void checkCollision();
+
   int map[29][29]=
               {
-                {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+                {0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
                 {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
@@ -53,6 +54,7 @@ private:
 
   CBlock background[29][29];
   std::list<CCharacter*> characterList;
+  std::list<CObstacle*> obstacleList;
   CPlayer* Player;
 
 };

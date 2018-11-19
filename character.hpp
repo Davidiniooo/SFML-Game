@@ -30,13 +30,14 @@
 
 class CCharacter{
 public:
-
   CCharacter();
   void init(const std::string texture,float xPos, float yPos,float acceleration, float maxVelocity);
   void render();
   sf::Vector2f getPos();
+  CSprite getCSprite(){return m_pcharacterSprite;};
   void setViewDirection(float degrees);
   void move(int leftright, int updown);
+  void processCollision(CSprite collidingSprite);
 protected:
 
   float m_fxPos;
