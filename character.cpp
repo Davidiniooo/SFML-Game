@@ -149,6 +149,16 @@ void CCharacter::render(){
 
 void CCharacter::processCollision(CSprite collidingSprite){
 
+  sf::Vector2f middleCharacter = this->getPos();
+  middleCharacter.x += this->getCSprite().getSprite().getGlobalBounds().width / 2;
+  middleCharacter.y += this->getCSprite().getSprite().getGlobalBounds().height / 2;
+
+  sf::Vector2f middleColliding = collidingSprite->getCSprite()->getPos();
+  middleColliding.x += this->getCSprite().getSprite().getGlobalBounds().width / 2;
+  middleColliding.y += this->getCSprite().getSprite().getGlobalBounds().height / 2;
+
+
+
 }
 
 void CCharacter::setViewDirection(float degrees){
