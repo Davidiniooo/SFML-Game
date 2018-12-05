@@ -1,6 +1,6 @@
 #include"player.hpp"
 #include <iostream>
-#define PI 3.141592653589793238462643383279
+
 
 CPlayer::CPlayer(CCharacter* player){
   m_pCharacter = player;

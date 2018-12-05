@@ -7,7 +7,7 @@ void CGame::init(){
   characterList.push_back(TestCharacter);
 
   CObstacle* TestObstacle = new CObstacle;
-  TestObstacle->init("Images/test3.png",0,0,100,100);
+  TestObstacle->init("Images/test3.png",-100,-100,100,100);
   obstacleList.push_back(TestObstacle);
 
 }
@@ -19,6 +19,7 @@ void CGame::run(){
   iteratorCCharacter = characterList.begin();
   iteratorCObstacle = obstacleList.begin();
   Player = new CPlayer(*iteratorCCharacter);
+
   createBackground();
 
   while(g_pFramework->getWindow()->isOpen()==true)
@@ -29,7 +30,7 @@ void CGame::run(){
       handleEvents();
       Player->checkKeyboard();
       Player->checkMouse();
-
+      checkCollision();
       for(int x = 0;x<29;x++)
       {
         for(int y = 0;y<29;y++)
@@ -70,8 +71,7 @@ void CGame::checkCollision(){
 
       if (boundingBoxCharacter.intersects(boundingBoxObstacle))
       {
-        CSprite tempCharacterSprite = (*iteratorCCharacter)->getCSprite();
-        (*iteratorCCharacter)->processCollision(tempCharacterSprite);
+        (*iteratorCCharacter)->processCollision(tempObstacleSprite);
       }
     }
 

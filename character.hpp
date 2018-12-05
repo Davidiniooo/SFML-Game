@@ -27,6 +27,7 @@
 #define ANIMPHASE_WALKING_UP_1 10
 #define ANIMPHASE_WALKING_UP_2 11
 
+#define PI 3.141592653589793238462643383279
 
 class CCharacter{
 public:
@@ -43,7 +44,7 @@ protected:
   float m_fxPos;
   float m_fyPos;
 
-  float m_fAcceeration;
+  float m_fAcceleration;
   float m_fMaxVelocity;
 
   float m_fxVelocity;
