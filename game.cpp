@@ -24,8 +24,6 @@ void CGame::run(){
 
   while(g_pFramework->getWindow()->isOpen()==true)
   {
-
-
       g_pFramework->update();
       handleEvents();
       Player->checkKeyboard();
@@ -49,11 +47,9 @@ void CGame::run(){
 
         (*iteratorCObstacle)->render();
       }
-
-
       g_pFramework->render();
 
-
+      std::cout << "" << '\n';
   }
 }
 void CGame::checkCollision(){

@@ -38,13 +38,13 @@ void CCharacter::move(int leftright,int updown){
       {
         m_fxVelocity-=m_fAcceleration * g_pTimer->getElapsed()*5;
         if(m_fxVelocity<0)
-          m_fxVelocity=0;
+          m_fxVelocity = 0;
       }
     else if(m_fxVelocity<0)
       {
         m_fxVelocity+=m_fAcceleration * g_pTimer->getElapsed()*5;
         if(m_fxVelocity>0)
-          m_fxVelocity=0;
+          m_fxVelocity = 0;
       }
   }
   if(updown == UP)
@@ -61,13 +61,13 @@ void CCharacter::move(int leftright,int updown){
       {
         m_fyVelocity-=m_fAcceleration * g_pTimer->getElapsed()*5;
         if(m_fyVelocity<0)
-          m_fyVelocity=0;
+          m_fyVelocity = 0;
       }
     else if(m_fyVelocity<0)
       {
         m_fyVelocity+=m_fAcceleration * g_pTimer->getElapsed()*5;
         if(m_fyVelocity>0)
-          m_fyVelocity=0;
+          m_fyVelocity = 0;
       }
   }
   if(m_fxVelocity>m_fMaxVelocity)
@@ -145,11 +145,9 @@ void CCharacter::render(){
 
   m_pcharacterSprite.setPos(m_fxPos,m_fyPos);
   m_pcharacterSprite.renderAnimation(round(m_fcurrentAnimPhase));
-
 }
 
 void CCharacter::processCollision(CSprite collidingSprite){
-
   sf::Vector2f middleCharacter;
   middleCharacter.x = this->getCSprite().getSprite().getGlobalBounds().left + (this->getCSprite().getSprite().getGlobalBounds().width / 2);
   middleCharacter.y = this->getCSprite().getSprite().getGlobalBounds().top  + (this->getCSprite().getSprite().getGlobalBounds().height / 2);
@@ -164,10 +162,12 @@ void CCharacter::processCollision(CSprite collidingSprite){
     if(middleCharacter.y >= middleColliding.y)
     {
       m_fyPos = collidingSprite.getSprite().getGlobalBounds().top+collidingSprite.getSprite().getGlobalBounds().height;
+      m_fyVelocity = 0;
     }
     else if(middleCharacter.y < middleColliding.y)
     {
       m_fyPos = collidingSprite.getSprite().getGlobalBounds().top - this->getCSprite().getSprite().getGlobalBounds().height;
+      m_fyVelocity = 0;
     }
   }
   else if(middleCharacter.y == middleColliding.y)
@@ -175,10 +175,12 @@ void CCharacter::processCollision(CSprite collidingSprite){
     if(middleCharacter.x<middleColliding.x)
     {
       m_fxPos =  collidingSprite.getSprite().getGlobalBounds().left - this->getCSprite().getSprite().getGlobalBounds().width;
+      m_fxVelocity = 0;
     }
     else if(middleCharacter.x>middleColliding.x)
     {
       m_fxPos =  collidingSprite.getSprite().getGlobalBounds().left + collidingSprite.getSprite().getGlobalBounds().width;
+      m_fxVelocity = 0;
     }
   }
   else
@@ -203,18 +205,22 @@ void CCharacter::processCollision(CSprite collidingSprite){
   if(collisionAngle>=45&&collisionAngle<135)
   {
     m_fxPos =  collidingSprite.getSprite().getGlobalBounds().left + collidingSprite.getSprite().getGlobalBounds().width;
+    m_fxVelocity = 0;
   }
   else if(collisionAngle>=135&&collisionAngle<225)
   {
     m_fyPos = collidingSprite.getSprite().getGlobalBounds().top+collidingSprite.getSprite().getGlobalBounds().height;
+    m_fyVelocity = 0;
   }
   else if(collisionAngle>=225&&collisionAngle<315)
   {
     m_fxPos =  collidingSprite.getSprite().getGlobalBounds().left - this->getCSprite().getSprite().getGlobalBounds().width;
+    m_fxVelocity = 0;
   }
   else if(collisionAngle>=315||collisionAngle<45)
   {
     m_fyPos = collidingSprite.getSprite().getGlobalBounds().top - this->getCSprite().getSprite().getGlobalBounds().height;
+    m_fyVelocity = 0;
   }
   m_pcharacterSprite.setPos(m_fxPos,m_fyPos);
 }

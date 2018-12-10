@@ -26,7 +26,6 @@ void CPlayer::checkKeyboard(){
     directiony = DOWN;
   else
     directiony = NO;
-
   m_pCharacter->move(directionx,directiony);
   moveCamera();
 }
