@@ -3,7 +3,7 @@
 #include"player.hpp"
 #include"obstacle.hpp"
 #include<list>
-
+#include"weapon.hpp"//delete this #inclue pls
 
 #ifndef GAME_HPP
 #define GAME_HPP

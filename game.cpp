@@ -3,12 +3,15 @@
 
 void CGame::init(){
   CCharacter* TestCharacter = new CCharacter;
-  TestCharacter->init("Images/solider.png",0,0,10,10);
+  TestCharacter->init("Images/solider.png",0,0,100,10);
   characterList.push_back(TestCharacter);
 
   CObstacle* TestObstacle = new CObstacle;
   TestObstacle->init("Images/test3.png",-100,-100,100,100);
   obstacleList.push_back(TestObstacle);
+  CObstacle* TestObstacle2 = new CObstacle;
+  TestObstacle2->init("Images/test3.png",-200,-100,100,100);
+  obstacleList.push_back(TestObstacle2);
 
 }
 
@@ -20,10 +23,14 @@ void CGame::run(){
   iteratorCObstacle = obstacleList.begin();
   Player = new CPlayer(*iteratorCCharacter);
 
+  CWeapon testweapon;
+  testweapon.init("Images/smg1.png",0,0);
+  testweapon.setRotation(70);
   createBackground();
-
+  float test1 = 0;
   while(g_pFramework->getWindow()->isOpen()==true)
   {
+      testweapon.setRotation(test1);
       g_pFramework->update();
       handleEvents();
       Player->checkKeyboard();
@@ -47,9 +54,9 @@ void CGame::run(){
 
         (*iteratorCObstacle)->render();
       }
+      testweapon.render();
       g_pFramework->render();
-
-      std::cout << "" << '\n';
+      test1++;
   }
 }
 void CGame::checkCollision(){

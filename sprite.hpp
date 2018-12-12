@@ -14,10 +14,14 @@ public:
   void init(const std::string inputImage,float width,float height);
   void initAnimation(const std::string inputImage,int animationPhases);
 
+  void setPos(float xPos, float yPos);
+  void rotate(float degrees);
+  void setScale(float scale);
+  sf::Sprite getSprite(){return sprite;};
+
   void render();
   void renderAnimation(int animationPhase);
-  void setPos(float xPos, float yPos);
-  sf::Sprite getSprite(){return sprite;};
+
 private:
   sf::Sprite sprite;
   sf::Texture texture;

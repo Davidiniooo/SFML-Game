@@ -38,3 +38,11 @@ void CSprite::renderAnimation(int animationPhase){
 void CSprite::setPos(float xPos,float yPos){
   sprite.setPosition(sf::Vector2f(xPos,yPos));
 }
+
+void CSprite::rotate(float degrees){
+  sprite.setRotation(degrees);
+}
+
+void CSprite::setScale(float scale){
+  sprite.setScale(scale,scale);
+}
