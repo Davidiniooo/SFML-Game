@@ -18,7 +18,6 @@ public:
   void rotate(float degrees);
   void setScale(float scale);
   sf::Sprite getSprite(){return sprite;};
-
   void render();
   void renderAnimation(int animationPhase);
 

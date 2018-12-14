@@ -15,5 +15,5 @@ protected:
   float m_fWidth;
   float m_fHeight;
   CSprite m_blockSprite;
-
+  
 };

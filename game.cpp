@@ -23,14 +23,11 @@ void CGame::run(){
   iteratorCObstacle = obstacleList.begin();
   Player = new CPlayer(*iteratorCCharacter);
 
-  CWeapon testweapon;
-  testweapon.init("Images/smg1.png",0,0);
-  testweapon.setRotation(70);
   createBackground();
-  float test1 = 0;
+
   while(g_pFramework->getWindow()->isOpen()==true)
   {
-      testweapon.setRotation(test1);
+
       g_pFramework->update();
       handleEvents();
       Player->checkKeyboard();
@@ -44,19 +41,17 @@ void CGame::run(){
         }
       }
 
-      for (iteratorCCharacter = characterList.begin();iteratorCCharacter!=characterList.end();iteratorCCharacter++)
-      {
-        (*iteratorCCharacter)->render();
-      }
-
       for (iteratorCObstacle = obstacleList.begin();iteratorCObstacle!=obstacleList.end();iteratorCObstacle++)
       {
 
         (*iteratorCObstacle)->render();
       }
-      testweapon.render();
+      for (iteratorCCharacter = characterList.begin();iteratorCCharacter!=characterList.end();iteratorCCharacter++)
+      {
+        (*iteratorCCharacter)->render();
+      }
       g_pFramework->render();
-      test1++;
+
   }
 }
 void CGame::checkCollision(){

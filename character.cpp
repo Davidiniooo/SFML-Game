@@ -21,6 +21,7 @@ void CCharacter::init(const std::string texture,float xPos, float yPos,float acc
   m_fviewDirection = 0;
   m_fcurrentAnimPhase = ANIMPHASE_STANDING_UP;
   m_pcharacterSprite.setPos(m_fxPos,m_fyPos);
+  m_CharacterWeapon.init("Images/smg1.png",m_fxPos,m_fyPos);
 }
 
 void CCharacter::move(int leftright,int updown){
@@ -144,6 +145,7 @@ void CCharacter::render(){
   }
 
   m_pcharacterSprite.setPos(m_fxPos,m_fyPos);
+  renderWeapon();
   m_pcharacterSprite.renderAnimation(round(m_fcurrentAnimPhase));
 }
 
@@ -232,4 +234,19 @@ void CCharacter::setViewDirection(float degrees){
 sf::Vector2f CCharacter::getPos(){
   sf::Vector2f tempPos(m_fxPos,m_fyPos);
   return tempPos;
+}
+
+void CCharacter::renderWeapon(){
+    float tempViewDirection = m_fviewDirection;
+    if(tempViewDirection==0||tempViewDirection==90||tempViewDirection==180||tempViewDirection==270)
+      tempViewDirection++;
+
+    m_CharacterWeapon.setRotation(tempViewDirection-90);
+    float tempXPos;
+    float tempYPos;
+    tempXPos = this->getCSprite().getSprite().getGlobalBounds().left + (this->getCSprite().getSprite().getGlobalBounds().width / 2) ;
+    tempYPos = this->getCSprite().getSprite().getGlobalBounds().top  + (this->getCSprite().getSprite().getGlobalBounds().height / 2);
+    m_CharacterWeapon.setPosition(tempXPos,tempYPos);
+    m_CharacterWeapon.render();
+
 }

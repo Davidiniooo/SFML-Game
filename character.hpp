@@ -1,5 +1,6 @@
 #include"framework.hpp"
 #include"sprite.hpp"
+#include"weapon.hpp"
 #include <math.h>
 
 #ifndef CHARACTER_HPP
@@ -41,6 +42,8 @@ public:
   void processCollision(CSprite collidingSprite);
 protected:
 
+  void renderWeapon();
+
   float m_fxPos;
   float m_fyPos;
 
@@ -53,6 +56,9 @@ protected:
   float m_fviewDirection;
 
   float m_fcurrentAnimPhase;
+
+  CWeapon m_CharacterWeapon;
+
   CSprite m_pcharacterSprite;
 
 
