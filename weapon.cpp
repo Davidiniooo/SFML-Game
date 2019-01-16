@@ -8,10 +8,13 @@ CWeapon::CWeapon(){
 void CWeapon::init(const std::string texture,float xPos, float yPos){
   m_fxPos = xPos;
   m_fyPos = yPos;
-  alreadyFlipped = false;
+
   m_weaponSprite.init(texture);
   m_weaponSprite.setScale(3);
   m_weaponSprite.setPos(xPos,yPos);
+
+  m_fWidth = m_weaponSprite.getSprite().getGlobalBounds().width;
+  m_fHeight = m_weaponSprite.getSprite().getGlobalBounds().height;
 }
 
 void CWeapon::setRotation(float degrees){

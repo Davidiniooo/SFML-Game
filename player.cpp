@@ -79,11 +79,13 @@ void CPlayer::checkMouse(){
     {
       viewAngle += 270;
     }
-
     m_pCharacter->setViewDirection(viewAngle);
   }
 }
 
 void CPlayer::moveCamera(){
-  g_pFramework->updateView(m_pCharacter->getPos());
+  sf::Vector2f tempPos = m_pCharacter->getPos();
+  tempPos.x += m_pCharacter->getCSprite().getSprite().getGlobalBounds().width/2;
+  tempPos.y += m_pCharacter->getCSprite().getSprite().getGlobalBounds().height/2;
+  g_pFramework->updateView(tempPos);
 }

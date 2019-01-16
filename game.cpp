@@ -1,6 +1,6 @@
 #include"game.hpp"
 #include<iostream>
-
+#include"shot.hpp"
 void CGame::init(){
   CCharacter* TestCharacter = new CCharacter;
   TestCharacter->init("Images/solider.png",0,0,100,10);
@@ -25,6 +25,8 @@ void CGame::run(){
 
   createBackground();
 
+  CShot testshot;
+  testshot.init(50,50,1,22.5);
   while(g_pFramework->getWindow()->isOpen()==true)
   {
 
@@ -50,6 +52,8 @@ void CGame::run(){
       {
         (*iteratorCCharacter)->render();
       }
+      testshot.move();
+      testshot.render();
       g_pFramework->render();
 
   }

@@ -28,17 +28,18 @@
 #define ANIMPHASE_WALKING_UP_1 10
 #define ANIMPHASE_WALKING_UP_2 11
 
-#define PI 3.141592653589793238462643383279
-
 class CCharacter{
 public:
   CCharacter();
   void init(const std::string texture,float xPos, float yPos,float acceleration, float maxVelocity);
   void render();
+
   sf::Vector2f getPos();
   CSprite getCSprite(){return m_pcharacterSprite;};
+
   void setViewDirection(float degrees);
   void move(int leftright, int updown);
+  void shot();
   void processCollision(CSprite collidingSprite);
 protected:
 

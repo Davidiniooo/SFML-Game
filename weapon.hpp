@@ -14,9 +14,11 @@ public:
 private:
   float m_fxPos;
   float m_fyPos;
+  float m_fWidth;
+  float m_fHeight;
 
   float m_fRotation;
   CSprite m_weaponSprite;
-  bool alreadyFlipped;
+
 };
 #endif

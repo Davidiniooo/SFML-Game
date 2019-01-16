@@ -6,6 +6,8 @@
 #ifndef SPRITE_HPP
 #define SPRITE_HPP
 
+#define PI 3.141592653589793238462643383279
+
 class CSprite
 {
 public:
