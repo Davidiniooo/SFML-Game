@@ -81,6 +81,8 @@ void CPlayer::checkMouse(){
     }
     m_pCharacter->setViewDirection(viewAngle);
   }
+  if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    m_pCharacter->shoot();
 }
 
 void CPlayer::moveCamera(){

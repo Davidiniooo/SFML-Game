@@ -1,6 +1,5 @@
 #include"timer.hpp"
 
-
 CTimer::CTimer(){
 
 }

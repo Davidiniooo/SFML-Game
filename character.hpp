@@ -1,6 +1,8 @@
 #include"framework.hpp"
 #include"sprite.hpp"
 #include"weapon.hpp"
+#include"shot.hpp"
+#include"information.hpp"
 #include <math.h>
 
 #ifndef CHARACTER_HPP
@@ -37,9 +39,10 @@ public:
   sf::Vector2f getPos();
   CSprite getCSprite(){return m_pcharacterSprite;};
 
+  CShot* getShot() {return shotArray[0];};
   void setViewDirection(float degrees);
   void move(int leftright, int updown);
-  void shot();
+  void shoot();
   void processCollision(CSprite collidingSprite);
 protected:
 
@@ -62,6 +65,6 @@ protected:
 
   CSprite m_pcharacterSprite;
 
-
+  CShot* shotArray[1];
 };
 #endif

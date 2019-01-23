@@ -1,7 +1,6 @@
 #ifndef TSINGLETON
 #define TSINGLETON
 
-
 template<class T>
 class TSingleton
 {

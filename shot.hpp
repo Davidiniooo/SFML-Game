@@ -1,5 +1,8 @@
 #include"sprite.hpp"
 
+#ifndef SHOT_HPP
+#define SHOT_HPP
+
 class CShot{
 
 public:
@@ -16,3 +19,4 @@ private:
 
   CSprite m_shotSprite;
 };
+#endif

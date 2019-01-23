@@ -1,5 +1,9 @@
+#ifndef BLOCK_HPP
+#define BLOCK_HPP
+
 #include"sprite.hpp"
 #include <string>
+
 class CBlock{
 
 public:
@@ -15,5 +19,6 @@ protected:
   float m_fWidth;
   float m_fHeight;
   CSprite m_blockSprite;
-  
+
 };
+#endif

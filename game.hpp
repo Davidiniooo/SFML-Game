@@ -1,9 +1,9 @@
 #include"framework.hpp"
+#include"information.hpp"
 #include"character.hpp"
 #include"player.hpp"
 #include"obstacle.hpp"
 #include<list>
-#include"weapon.hpp"//delete this #inclue pls
 
 #ifndef GAME_HPP
 #define GAME_HPP
@@ -53,8 +53,7 @@ private:
               };
 
   CBlock background[29][29];
-  std::list<CCharacter*> characterList;
-  std::list<CObstacle*> obstacleList;
+
   CPlayer* Player;
 
 };

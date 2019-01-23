@@ -1,8 +1,6 @@
-
 #include "character.hpp"
 #include "timer.hpp"
 #include <iostream>
-
 
 CCharacter::CCharacter(){
 
@@ -237,16 +235,20 @@ sf::Vector2f CCharacter::getPos(){
 }
 
 void CCharacter::renderWeapon(){
-    float tempViewDirection = m_fviewDirection;
+  float tempViewDirection = m_fviewDirection;
     if(tempViewDirection==0||tempViewDirection==90||tempViewDirection==180||tempViewDirection==270)
       tempViewDirection++;
 
-    m_CharacterWeapon.setRotation(tempViewDirection-90);
-    float tempXPos;
-    float tempYPos;
-    tempXPos = this->getCSprite().getSprite().getGlobalBounds().left + (this->getCSprite().getSprite().getGlobalBounds().width / 2) ;
-    tempYPos = this->getCSprite().getSprite().getGlobalBounds().top  + (this->getCSprite().getSprite().getGlobalBounds().height / 2);
-    m_CharacterWeapon.setPosition(tempXPos,tempYPos);
-    m_CharacterWeapon.render();
-
+  m_CharacterWeapon.setRotation(tempViewDirection-90);
+  float tempXPos;
+  float tempYPos;
+  tempXPos = this->getCSprite().getSprite().getGlobalBounds().left + (this->getCSprite().getSprite().getGlobalBounds().width / 2) ;
+  tempYPos = this->getCSprite().getSprite().getGlobalBounds().top  + (this->getCSprite().getSprite().getGlobalBounds().height / 2);
+  m_CharacterWeapon.setPosition(tempXPos,tempYPos);
+  m_CharacterWeapon.render();
+}
+void CCharacter::shoot(){
+  CShot* tempshot = new CShot;
+  tempshot->init(m_fxPos,m_fyPos,1,m_fviewDirection);
+  g_pInformation->addShot(tempshot);
 }
