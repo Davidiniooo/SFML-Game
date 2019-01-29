@@ -1,5 +1,6 @@
 #include "character.hpp"
 #include "timer.hpp"
+#include"math.h"
 #include <iostream>
 
 CCharacter::CCharacter(){
@@ -29,7 +30,7 @@ void CCharacter::move(int leftright,int updown){
   }
   else if(leftright == RIGHT)
   {
-        m_fxVelocity+=m_fAcceleration * g_pTimer->getElapsed();
+    m_fxVelocity+=m_fAcceleration * g_pTimer->getElapsed();
   }
   else if(leftright == NO)
   {
@@ -83,14 +84,14 @@ void CCharacter::move(int leftright,int updown){
     m_fyVelocity = -m_fMaxVelocity;
 
 
-  m_fxPos += m_fxVelocity/5;
-  m_fyPos += m_fyVelocity/5;
+  m_fxPos += m_fxVelocity*g_pTimer->getElapsed();
+  m_fyPos += m_fyVelocity*g_pTimer->getElapsed();
 }
 
 void CCharacter::render(){
   if(m_fxVelocity != 0 || m_fyVelocity != 0)
   {
-    m_fcurrentAnimPhase += sqrt(pow(m_fxVelocity,2)+pow(m_fyVelocity,2))*g_pTimer->getElapsed()*0.2;
+    m_fcurrentAnimPhase += sqrt(pow(m_fxVelocity,2)+pow(m_fyVelocity,2))*g_pTimer->getElapsed()*0.002;
 
     if(m_fviewDirection>=45&&m_fviewDirection <135)
     {
@@ -248,7 +249,35 @@ void CCharacter::renderWeapon(){
   m_CharacterWeapon.render();
 }
 void CCharacter::shoot(){
-  CShot* tempshot = new CShot;
-  tempshot->init(m_fxPos,m_fyPos,1,m_fviewDirection);
-  g_pInformation->addShot(tempshot);
+  if(m_CharacterWeapon.m_fWeaponCooldown==0)
+  {
+    CShot* tempshot = new CShot;
+
+    float tempXPos = m_fxPos+m_pcharacterSprite.getSprite().getGlobalBounds().width/2;
+    float tempYPos = m_fyPos+m_pcharacterSprite.getSprite().getGlobalBounds().height/2;
+
+    if(m_fviewDirection>=0&&m_fviewDirection<90)
+    {
+      tempYPos -= sin((90-m_fviewDirection)* M_PI/180)*(m_CharacterWeapon.m_fWidth+10);
+      tempXPos += cos((90-m_fviewDirection)* M_PI/180)*(m_CharacterWeapon.m_fWidth+10);
+    }
+    if(m_fviewDirection>=90&&m_fviewDirection<180)
+    {
+      tempYPos += sin((m_fviewDirection-90)* M_PI/180)*(m_CharacterWeapon.m_fWidth+10);
+      tempXPos += cos((m_fviewDirection-90)* M_PI/180)*(m_CharacterWeapon.m_fWidth+10);
+    }
+    if(m_fviewDirection>=180&&m_fviewDirection<270)
+    {
+      tempYPos += sin((270-m_fviewDirection)* M_PI/180)*(m_CharacterWeapon.m_fWidth+10);
+      tempXPos -= cos((270-m_fviewDirection)* M_PI/180)*(m_CharacterWeapon.m_fWidth+10);
+    }
+    if(m_fviewDirection>=270&&m_fviewDirection<360)
+    {
+      tempYPos -= sin((m_fviewDirection-270)* M_PI/180)*(m_CharacterWeapon.m_fWidth+10);
+      tempXPos -= cos((m_fviewDirection-270)* M_PI/180)*(m_CharacterWeapon.m_fWidth+10);
+    }
+    tempshot->init(tempXPos,tempYPos,600,m_fviewDirection);
+    g_pInformation->addShot(tempshot);
+    m_CharacterWeapon.m_fWeaponCooldown=0.15;
+  }
 }

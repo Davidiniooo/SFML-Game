@@ -46,3 +46,7 @@ void CSprite::rotate(float degrees){
 void CSprite::setScale(float scale){
   sprite.setScale(scale,scale);
 }
+
+void CSprite::setOrigin(float x,float y){
+  sprite.setOrigin(x,y);
+}

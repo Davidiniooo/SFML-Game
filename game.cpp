@@ -4,11 +4,11 @@
 
 void CGame::init(){
   CCharacter* TestCharacter = new CCharacter;
-  TestCharacter->init("Images/solider.png",0,0,100,10);
+  TestCharacter->init("Images/solider.png",0,0,3000,300);
   g_pInformation->addCharacter(TestCharacter);
 
   CCharacter* TestCharacter2 = new CCharacter;
-  TestCharacter2->init("Images/solider.png",0,0,100,10);
+  TestCharacter2->init("Images/solider.png",0,0,100,100);
   g_pInformation->addCharacter(TestCharacter2);
 
   CObstacle* TestObstacle = new CObstacle;
@@ -25,7 +25,7 @@ void CGame::run(){
 
   std::list<CCharacter*>::iterator iteratorCCharacter;
   std::list<CObstacle*>::iterator iteratorCObstacle;
-  std::list<CShot*>::iterator iteratorShot;
+  std::list<CShot*>::iterator iteratorCShot;
 
 
   iteratorCCharacter = g_pInformation->characterList.begin();
@@ -35,7 +35,6 @@ void CGame::run(){
   createBackground();
   while(g_pFramework->getWindow()->isOpen()==true)
   {
-
       g_pFramework->update();
       handleEvents();
 
@@ -62,35 +61,42 @@ void CGame::run(){
         (*iteratorCCharacter)->render();
       }
 
-      for (iteratorShot = g_pInformation->shotList.begin();iteratorShot!=g_pInformation->shotList.end();iteratorShot++)
+      for (iteratorCShot = g_pInformation->shotList.begin();iteratorCShot!=g_pInformation->shotList.end();iteratorCShot++)
       {
-        (*iteratorShot)->move();
-        (*iteratorShot)->render();
+        (*iteratorCShot)->move();
+        (*iteratorCShot)->render();
       }
-
       g_pFramework->render();
   }
 }
 void CGame::checkCollision(){
   std::list<CCharacter*>::iterator iteratorCCharacter;
   std::list<CObstacle*>::iterator iteratorCObstacle;
-
-  for(iteratorCCharacter = g_pInformation->g_pInformation->characterList.begin();iteratorCCharacter != g_pInformation->characterList.end();iteratorCCharacter++)
+  std::list<CShot*>::iterator iteratorCShot;
+  for(iteratorCObstacle = g_pInformation->g_pInformation->obstacleList.begin();iteratorCObstacle != g_pInformation->obstacleList.end();iteratorCObstacle++)
   {
-    CSprite tempCharacterSprite = (*iteratorCCharacter)->getCSprite();
-    sf::FloatRect boundingBoxCharacter = tempCharacterSprite.getSprite().getGlobalBounds();
-    for(iteratorCObstacle = g_pInformation->obstacleList.begin();iteratorCObstacle != g_pInformation->obstacleList.end();iteratorCObstacle++)
+    sf::FloatRect boundingBoxObstacle = (*iteratorCObstacle)->getCSprite().getSprite().getGlobalBounds();
+
+    for(iteratorCCharacter = g_pInformation->characterList.begin();iteratorCCharacter != g_pInformation->characterList.end();iteratorCCharacter++)
     {
-      CSprite tempObstacleSprite = (*iteratorCObstacle)->getCSprite();
-      sf::FloatRect boundingBoxObstacle = tempObstacleSprite.getSprite().getGlobalBounds();
+      sf::FloatRect boundingBoxCharacter = (*iteratorCCharacter)->getCSprite().getSprite().getGlobalBounds();
 
       if (boundingBoxCharacter.intersects(boundingBoxObstacle))
       {
-        (*iteratorCCharacter)->processCollision(tempObstacleSprite);
+        (*iteratorCCharacter)->processCollision((*iteratorCObstacle)->getCSprite());
+      }
+    }
+    for(iteratorCShot = g_pInformation->g_pInformation->shotList.begin();iteratorCShot != g_pInformation->shotList.end();iteratorCShot++)
+    {
+      sf::FloatRect boundingBoxShot = (*iteratorCShot)->getCSprite().getSprite().getGlobalBounds();
+      if (boundingBoxShot.intersects(boundingBoxObstacle))
+      {
+          iteratorCShot = g_pInformation->shotList.erase(iteratorCShot);
       }
     }
   }
 }
+
 
 CGame::CGame(){
 

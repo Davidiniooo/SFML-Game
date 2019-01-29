@@ -19,6 +19,7 @@ public:
   void setPos(float xPos, float yPos);
   void rotate(float degrees);
   void setScale(float scale);
+  void setOrigin(float x, float y);
   sf::Sprite getSprite(){return sprite;};
   void render();
   void renderAnimation(int animationPhase);

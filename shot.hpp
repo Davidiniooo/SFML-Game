@@ -7,9 +7,11 @@ class CShot{
 
 public:
   CShot();
+  ~CShot();
   void init(float xPos, float yPos, float speed,float viewDirection);
   void move();
   void render();
+  CSprite getCSprite(){return m_shotSprite;};
 private:
   float m_fxPos;
   float m_fyPos;
